@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.util.Random;
+
 import static stepDefinitions.Hooks.driver;
 
 public class RegistrationPage {
@@ -79,15 +81,19 @@ public class RegistrationPage {
         @FindBy(xpath = ("//*[@id=\"center_column\"]/h1"))
         private WebElement myAccount;
 
-        @FindBy(xpath = ("//*[@id=\'center_column\']/div/ol/li"))
+        @FindBy(xpath = ("//*[@id=\"center_column\"]/div/ol/li"))
         private WebElement registError;
 
-        @FindBy(xpath = ("//*[@id=\"create_account_error\"]"))
+        @FindBy(id = ("create_account_error"))
         private WebElement emailError;
 
 
-        public void EnterEmail(String email){
-                emailAddress.sendKeys(email);
+        public void EnterEmail(){
+                        Random randomGenerator = new Random();
+                        int randomInt = randomGenerator.nextInt(1000);
+                        String newEmail = "username" + randomInt + "@mailinator.com";
+                        emailAddress.sendKeys(newEmail);
+
         }
 
         public void CreateAccount(){
@@ -179,19 +185,24 @@ public class RegistrationPage {
                 Assert.assertEquals(expectedResult, actualResult, "Testing Failed, because Expected and Actual do not match");
         }
 
-        public boolean RegistrationErrorMessageIsDisplayed() throws InterruptedException {
+        public boolean RegistrationErrorMessageIsDisplayed(){
                 String expectedResult = "firstname is required";
                 String actualResult = registError.getText();
                 return actualResult.contains(expectedResult);
         }
 
-        public boolean EmailErrorMessageIsDisplayed() {
+        public boolean EmailErrorMessageIsDisplayed() throws InterruptedException {
                 //JavascriptExecutor jse = (JavascriptExecutor) driver;
                 //jse.executeScript("window.scrollBy(0,250)");
+                Thread.sleep(10000);
                 String expectedResult = "An account using this email address has already been registered";
                 String actualResult = emailError.getText();
                 System.out.println("actual error message is" + actualResult);
                 return actualResult.contains(expectedResult);
+        }
+
+        public void EnterExistingEmailAddress(String existEmail){
+                emailAddress.sendKeys(existEmail);
         }
 
 }

@@ -16,8 +16,8 @@ public class RegistrationSteps {
      RegistrationPage registrationPage = new RegistrationPage(driver);
 
     @And("I enter my {string} in Email Address input field")
-    public void iEnterMyInEmailAddressInputField(String email) {
-            registrationPage.EnterEmail(email);
+    public void iEnterMyInEmailAddressInputField(String newEmail) {
+            registrationPage.EnterEmail();
     }
 
     @And("I click on Create an account button")
@@ -108,13 +108,18 @@ public class RegistrationSteps {
     }
 
     @Then("an error message is displayed")
-    public void anErrorMessageIsDisplayed() throws InterruptedException {
+    public void anErrorMessageIsDisplayed(){
         Assert.assertTrue(registrationPage.RegistrationErrorMessageIsDisplayed());
     }
 
     @Then("a message should be displayed warning me that the email has already been registered")
-    public void aMessageShouldBeDisplayedWarningMeThatTheEmailHasAlreadyBeenRegistered() {
+    public void aMessageShouldBeDisplayedWarningMeThatTheEmailHasAlreadyBeenRegistered() throws InterruptedException {
         Assert.assertTrue(registrationPage.EmailErrorMessageIsDisplayed());
 
+    }
+
+    @And("I enter an existing {string} in Email Address input field")
+    public void iEnterAnExistingInEmailAddressInputField(String existEmail) {
+        registrationPage.EnterExistingEmailAddress(existEmail);
     }
 }

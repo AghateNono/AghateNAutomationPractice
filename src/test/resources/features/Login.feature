@@ -5,7 +5,7 @@ Feature: Login
 
 
   Background:
-    Given I navigate to "WebPage" automation practice website
+    Given I navigate to "http://automationpractice.com/index.phphttp://automationpractice.com/index.php" automation practice website
     When I click on Sign in hyperlink on the top of the page
 
 

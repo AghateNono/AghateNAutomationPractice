@@ -10,7 +10,7 @@ Feature: Registration on Automation Practice website
 
 
   Scenario Outline: Valid Registration
-    And I enter my "<EmailAddress>" in Email Address input field
+    And I enter my "EmailAddress" in Email Address input field
     And I click on Create an account button
     And I click on a "<Title>" radio button to select a title
     And I enter "<FirstName>" in the First Name input field
@@ -29,8 +29,8 @@ Feature: Registration on Automation Practice website
     Then I must be able to register successfully
 
     Examples:
-      | EmailAddress                   | Title | FirstName | LastName | Password    | Day | Month | Year | Address         | City    | State      | ZipPostalCode | Country       | AdditionalInformation | HomePhone  | MobilePhone  |
-      | Testerabcde1234@Mailinator.com | Mrs   | Aghata    | Malaya   | Malaya12345 | 6   | 6     | 2000 | ABC King Street | Seattle | Washington | 98124         | United States | To be tested          | 5555551234 | +16505130514 |
+      | Title | FirstName | LastName | Password    | Day | Month | Year | Address         | City    | State      | ZipPostalCode | Country       | AdditionalInformation | HomePhone  | MobilePhone  |
+      | Mrs   | Aghata    | Malaya   | Malaya12345 | 6   | 6     | 2000 | ABC King Street | Seattle | Washington | 98124         | United States | To be tested          | 5555551234 | +16505130514 |
 
   Scenario Outline: Invalid Registration
     And I enter my "<EmailAddress>" in Email Address input field
@@ -52,12 +52,12 @@ Feature: Registration on Automation Practice website
     Then an error message is displayed
 
     Examples:
-      | EmailAddress                    | Title | FirstName | LastName | Password    | Day | Month | Year | Address         | City    | State      | ZipPostalCode | Country       | AdditionalInformation | HomePhone  | MobilePhone  |
-      | testerabcdef1234@mailinator.com | Mr    |           | Malaya   | Malaya12345 | 6   | 6     | 2000 | ABC King Street | Seattle | Washington | 98124         | United States | To be tested          | 5555551234 | +16505130514 |
+      | EmailAddress                   | Title | FirstName | LastName | Password    | Day | Month | Year | Address         | City    | State      | ZipPostalCode | Country       | AdditionalInformation | HomePhone  | MobilePhone  |
+      | Testerabcde1234@Mailinator.com | Mr    |           | Malaya   | Malaya12345 | 6   | 6     | 2000 | ABC King Street | Seattle | Washington | 98124         | United States | To be tested          | 5555551234 | +16505130514 |
 
 
   Scenario Outline: Registration with already registered Email Address
-    And I enter my "<EmailAddress>" in Email Address input field
+    And I enter an existing "<EmailAddress>" in Email Address input field
     And I click on Create an account button
     Then a message should be displayed warning me that the email has already been registered
 
